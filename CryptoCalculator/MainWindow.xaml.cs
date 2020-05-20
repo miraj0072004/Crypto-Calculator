@@ -25,6 +25,7 @@ namespace CryptoCalculator
         public MainWindow()
         {
             InitializeComponent();
+            ProfitRadio.IsChecked = true;
         }
 
 
@@ -40,13 +41,42 @@ namespace CryptoCalculator
 
         private void TxtExpectedProfit_OnTextChanged(object sender, TextChangedEventArgs e)
         {
+            CalculateValueToSellAt();
+        }
+
+
+        private void ToggleButtonStopLoss_OnChecked(object sender, RoutedEventArgs e)
+        {
+            ProfitLossLabel.Content = "Loss To Stop";
+            CalculateValueToSellAt();
+        }
+
+        private void ToggleButtonTakeProfit_OnChecked(object sender, RoutedEventArgs e)
+        {
+            ProfitLossLabel.Content = "Profit Expected";
+            CalculateValueToSellAt();
+        }
+
+        private void CalculateValueToSellAt()
+        {
             if (TxtBoxBoughtPrice.Text != string.Empty
                 && TxtExpectedProfit.Text != string.Empty
                 && TxtBoxBoughtAmount.Text != string.Empty)
             {
-                LabelSellPrice.Content =
-                    (float.Parse(TxtExpectedProfit.Text) + 1.01*float.Parse(TxtBoxBoughtAmount.Text)) * float.Parse(TxtBoxBoughtPrice.Text) /
-                    (0.99*float.Parse(TxtBoxBoughtAmount.Text));
+                if (ProfitRadio.IsChecked == true)
+                {
+                    LabelSellPrice.Content =
+                        (1.01 * float.Parse(TxtBoxBoughtAmount.Text) + float.Parse(TxtExpectedProfit.Text)) *
+                        float.Parse(TxtBoxBoughtPrice.Text) /
+                        (0.99 * float.Parse(TxtBoxBoughtAmount.Text));
+                }
+                else
+                {
+                    LabelSellPrice.Content =
+                        (1.01 * float.Parse(TxtBoxBoughtAmount.Text) - float.Parse(TxtExpectedProfit.Text)) *
+                        float.Parse(TxtBoxBoughtPrice.Text) /
+                        (0.99 * float.Parse(TxtBoxBoughtAmount.Text));
+                }
             }
             else
             {

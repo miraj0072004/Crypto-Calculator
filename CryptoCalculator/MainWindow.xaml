@@ -25,6 +25,7 @@
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
                 <!--<RowDefinition Height="*"></RowDefinition>-->
             </Grid.RowDefinitions>
 
@@ -33,20 +34,25 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center">Buying Rate :</Label>
-            <TextBox TextChanged="TxtExpectedProfit_OnTextChanged" VerticalAlignment="Center" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Left" Grid.Column="1" Grid.Row="0" x:Name="TxtBoxBoughtPrice"></TextBox>
+            <StackPanel VerticalAlignment="Center"  Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="2">
+                <RadioButton x:Name="ProfitRadio" Checked="ToggleButtonTakeProfit_OnChecked"  >Take Profit</RadioButton>
+                <RadioButton x:Name="LossRadio" Checked="ToggleButtonStopLoss_OnChecked"  Margin="21,0,-19,0">Stop Loss</RadioButton>
+            </StackPanel>
 
-            <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center">Amount Invested :</Label>
-            <TextBox TextChanged="TxtExpectedProfit_OnTextChanged" VerticalAlignment="Center" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Left" Grid.Column="1" Grid.Row="1" x:Name="TxtBoxBoughtAmount"></TextBox>
+            <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center">Buying Rate :</Label>
+            <TextBox TextChanged="TxtExpectedProfit_OnTextChanged" VerticalAlignment="Center" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Left" Grid.Column="1" Grid.Row="1" x:Name="TxtBoxBoughtPrice"></TextBox>
+
+            <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center">Amount Invested :</Label>
+            <TextBox TextChanged="TxtExpectedProfit_OnTextChanged" VerticalAlignment="Center" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Left" Grid.Column="1" Grid.Row="2" x:Name="TxtBoxBoughtAmount"></TextBox>
             
             <!--<Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center">Fees :</Label>
             <TextBox TextChanged="TxtExpectedProfit_OnTextChanged" VerticalAlignment="Center" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Left" Grid.Column="1" Grid.Row="2" x:Name="TxtFees"></TextBox>-->
 
-            <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center">Profit Expected :</Label>
-            <TextBox TextChanged="TxtExpectedProfit_OnTextChanged"  VerticalAlignment="Center" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Left" Grid.Column="1" Grid.Row="2" x:Name="TxtExpectedProfit"></TextBox>
+            <Label x:Name="ProfitLossLabel" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center">Profit Expected :</Label>
+            <TextBox TextChanged="TxtExpectedProfit_OnTextChanged"  VerticalAlignment="Center" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Left" Grid.Column="1" Grid.Row="3" x:Name="TxtExpectedProfit"></TextBox>
 
-            <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center">Price To Sell At :</Label>
-            <Label Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Left" x:Name="LabelSellPrice"></Label>
+            <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center">Price To Sell At :</Label>
+            <Label Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Left" x:Name="LabelSellPrice"></Label>
 
         </Grid>
 
